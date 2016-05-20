@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Steam API Tutorial</title>
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css" type="text/css">   
+</head>
+<body>
+ 
+  <!--default navigation bar-->
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Steam API Guide</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          Quick Links <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="api-rundown.html">What is an API</a></li>
+            <li><a href="getting-started.html">Getting Started with Steam</a></li>
+            <li><a href="api-calls.html">Making API calls</a></li>
+            <li><a href="http-requests.html">HTTP Requests</a></li>
+            <li><a href="json-data.html">Understanding response data</a></li>
+            <li><a href="accessing-data.html">Using API response data</a></li>
+          </ul>
+        </li>
+      </ul> 
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+   
+<div class="jumbotron">
+ <div class="container">
+    <h1>HTTP Requests</h1>
+    <p>Let's learn how to do some useful things with our API calls.</p>  
+ </div> 
+</div>
+
+<div class="container-fluid">
+<div style="text-align: center" class="row">
+  <div class="col-md-6 col-md-offset-3">
+   <h1>Using Javascript to make HTTP requests</h1>
+   <img src="images/httpRequest.jpg" alt="">
+   
+   <p>The above code introduces a new concept called AJAX which stands for Asynchronous Javascript And XML. It is basically what we use to communicate with a server. You can read more about AJAX <a href="https://developer.mozilla.org/en-US/docs/AJAX/Getting_Started">here</a>.</p>
+   <p>The above code is what you will basically be using everytime you wish to make requests to your API to get data that can then be displayed on a webpage. More on that later. For now, let's focus on what the above code is actually doing.</p>
+   
+     <div class="well">
+      <span>var url = "http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=377160&count=2&maxlength=300&format=json"</span>
+      </div>
+      
+      <p>This line of code simply declares a variable "url" to hold the url of our request.</p>
+      
+      <div class="well">
+          <span>var req = new XMLHttpRequest();</span>
+      </div>
+      
+      <p>Here, we are creating an object to help with sending our HTTP request.</p>
+      
+      
+      <div class="well">
+          <span>req.open("GET", url, true);</span>
+      </div>
+      
+      <p>Here, the object we created earlier to help with our HTTP request calls its open method which takes 3 arguments: the request type, which in this case is set to <span>GET</span>, the url for our API request, and a boolean value <span>true</span> which is allowing us to make this request <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Synchronous_and_Asynchronous_Requests">asynchronously</a>.</p>
+      
+      
+      <img src="images/snippet.jpg" alt="">    
+      
+      <p>The snippet here, once the page loads, parses the JSON data that we get back as long as the response status is good (between 200 and 400), and logs the data to the console. The req.send(null) just lets it be known that we are not sending any additional data with the request, so we can set this to null for most all GET requests.</p>
+      
+      <p>The example code above is for an HTTP request that does not require our API key as you probably noticed. For requests we make that do require our key, the structure is the same, we would just need to make sure we send our key along with our request, like so:</p>
+      
+      <img src="images/getKeyRequest.jpg" alt="">
+      
+        <p></p>  
+      
+      <div class="alert alert-warning">
+          <span>Note! Google Chrome Users</span> If you try to execute this code with an html file and try to load it in your browser to view results in the console, you may receive an error saying "no access-control-allow-origin header is present". Do not worry, if you run into this problem, simply go <a href="https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en">here</a> and download the extension to get around this issue.
+      </div>
+      
+      <h1>Whew!</h1> 
+      
+       <p>We've covered alot of important concepts so far. We've learned how to make a simple api request in the browser, and now we've learned the basics of making http requests using our api. But it's not enough to just make requests, we've got to know how to interpret the data that we get back! Let's take a look at the JSON data format next.</p> 
+
+    
+      <a href="api-calls.html" type="button" class="btn btn-success">Previous</a> 
+      <a href="json-data.html" type="button" class="btn btn-success">Continue</a>
+      
+  </div>
+</div>
+</div>
+ 
+
+  <div id="footer">
+    <div class="container">
+        <p>&copy; Nick DeJarnette 2016</p>
+    </div>
+</div>
+   
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    
+</body>
+</html>

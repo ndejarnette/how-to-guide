@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Steam API Tutorial</title>
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css" type="text/css">   
+</head>
+<body>
+ 
+  <!--default navigation bar-->
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Steam API Guide</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          Quick Links <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="api-rundown.html">What is an API</a></li>
+            <li><a href="getting-started.html">Getting Started with Steam</a></li>
+            <li><a href="api-calls.html">Making API calls</a></li>
+            <li><a href="http-requests.html">HTTP Requests</a></li>
+            <li><a href="json-data.html">Understanding response data</a></li>
+            <li><a href="accessing-data.html">Using API response data</a></li>
+          </ul>
+        </li>
+      </ul> 
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+   
+<div class="jumbotron">
+ <div class="container">
+    <h1>Getting started with Steam</h1>
+    <p>Let's get set up with Steam and get our API key.</p>  
+ </div> 
+</div>
+ 
+<div class="container-fluid">
+<div style="text-align: center" class="row">
+  <div class="col-md-6 col-md-offset-3">
+  <h1>First, you will need to sign up for a free steam account in order to receive your API key.</h1>
+      <p>Visit the page <a href="https://steamcommunity.com/login/home/?goto=%2Fdev%2Fapikey">here</a> and click on the <span>"Join Steam"</span> button located on the page.</p>
+      
+   <img src="images/signup.jpg" alt="">
+   
+   <p>After you have created an account. You will be taken to the page where you will receive your key. In the section where it asks for the domain you will be using, it is ok to just enter "localhost" for now.</p>
+   
+   <img src="images/apikey.jpg" alt="">
+     
+    <p>After you agree to the Steam Web API terms of use and click <span>"Register"</span>, you will be shown your API key. Be sure to keep this key safe and private! You don't want anyone else getting a hold of this.</p>
+    
+   <p>Right now, you may be asking youself, "What is an API key and why do I need one to get started?" Well, you can think of an API key as a hall pass. Just as the hall pass allows you to go through the halls to get to a destination without problems, an API key let's an application know that it is ok for you to make requests to its domain, and it is ok for that application to send back data to you.</p>
+   
+   <h1>Once you have your API key</h1>
+     
+    <p>It is time for us to learn about some of the basic API calls associated with Steam.</p>
+       
+      <a href="api-rundown.html" type="button" class="btn btn-success">Previous</a>
+      <a href="api-calls.html" type="button" class="btn btn-success">Continue</a>
+      
+  </div>
+</div>
+</div>
+ 
+    
+          
+<div id="footer">
+    <div class="container">
+        <p>&copy; Nick DeJarnette 2016</p>
+    </div>
+</div>
+   
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    
+</body>
+</html>

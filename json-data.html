@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Steam API Tutorial</title> 
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css" type="text/css">   
+</head>
+<body>
+ 
+  <!--default navigation bar-->
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Steam API Guide</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          Quick Links <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="api-rundown.html">What is an API</a></li>
+            <li><a href="getting-started.html">Getting Started with Steam</a></li>
+            <li><a href="api-calls.html">Making API calls</a></li>
+            <li><a href="http-requests.html">HTTP Requests</a></li>
+            <li><a href="json-data.html">Understanding response data</a></li>
+            <li><a href="accessing-data.html">Using API response data</a></li>
+          </ul>
+        </li>
+      </ul> 
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+   
+<div class="jumbotron">
+ <div class="container">
+    <h1>Understanding response data</h1>
+    <p>We need to be able to understand the data we get back from our API</p>  
+ </div> 
+</div>
+ 
+<div class="container-fluid">
+<div style="text-align: center" class="row">
+  <div class="col-md-6 col-md-offset-3">
+      <h1>Interpreting JSON data</h1>
+      <p>If you remember from the previous page, we made this http request to our API which allows us to get various information about a Steam user:</p>
+      
+      <img src="images/getKeyRequest.jpg" alt="">
+      
+      <p>The data that we get back from this request is a JSON object. JSON stands for Javascript Object Notation and is simply a readable format for structuring data. We will not so much worry about what JSON is, but rather simply how to interpret the data we get back. You can read more about what JSON is <a href="https://msdn.microsoft.com/en-us/library/bb299886.aspx">here</a>.</p>
+      
+      <p>Let's continue to work with the example API call from above to get a player's summary data. If you were to execute this code with an html file and check the console in your browser, you should see some data that looks like this:</p>
+      
+      <img src="images/jsonData.jpg" alt="">
+      
+      <div class="alert alert-warning">
+          <span>NOTE!</span> I am using Google Chrome for all of these examples. To access the google chrome console, simply press <span>F12</span>
+          or <span>CTRL-SHIFT-I</span>, and then navigate to the console tab to see output to the console.
+      </div>
+      
+      <p>Ok great! So now we can see the data returned from our request. If we look at the top and find the <span>response</span> type, we see that it is an object. Within that response, going to the next line down, we see that the object has a name of <span>players</span>, which represents the player returned from our request based on the <span>steamids</span> value we entered along with our request (you can enter multiple steamids along with your request, by separating each id with a comma).</p>
+      
+      <p>Within the <span>players</span> object, we can see that there is an array consisting of one object, an object holding all the data that is associated and visible from our selected user. See if you can find our target players' <span>real name, personaname, profileurl</span> and their <span>avatar</span>. Read more about these returned keys and values at <a href="https://developer.valvesoftware.com/wiki/Steam_Web_API#Arguments_4">the official API documentation.</a></p>
+      
+      <h1>Now that we can see our data...</h1>
+      
+      <p>Let's find out how we can access and display our player <span>avatar, personaname, realname</span> and <span>profileurl.</span></p>
+       
+     
+      <a href="http-requests.html" type="button" class="btn btn-success">Previous</a> 
+      <a href="accessing-data.html" type="button" class="btn btn-success">Continue</a>
+      
+  </div>
+</div>
+</div>
+    
+<div id="footer">
+    <div class="container">
+        <p>&copy; Nick DeJarnette 2016</p>
+    </div>
+</div>
+   
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    
+</body>
+</html>

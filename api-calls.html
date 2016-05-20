@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Steam API Tutorial</title> 
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css" type="text/css">   
+</head>
+<body>
+ 
+  <!--default navigation bar-->
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Steam API Guide</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          Quick Links <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="api-rundown.html">What is an API</a></li>
+            <li><a href="getting-started.html">Getting Started with Steam</a></li>
+            <li><a href="api-calls.html">Making API calls</a></li>
+            <li><a href="http-requests.html">HTTP Requests</a></li>
+            <li><a href="json-data.html">Understanding response data</a></li>
+            <li><a href="accessing-data.html">Using API response data</a></li>
+          </ul>
+        </li>
+      </ul> 
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+   
+<div class="jumbotron">
+ <div class="container">
+    <h1>Making API calls</h1>
+    <p>Let's see what kinds of calls we can make using our API</p>  
+ </div> 
+</div>
+ 
+<div class="container-fluid">
+<div style="text-align: center" class="row">
+  <div class="col-md-6 col-md-offset-3">
+      <h1>API Request Structure</h1>
+      <p>With our Steam API, there are two different ways to submit requests: requests which include our API key and requests that do not require our API key. We will first examine a call that <strong>does not require our API key.</strong></p>
+      
+      <div class="well">
+      <a href=" http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=377160&count=3&maxlength=300&format=json"><em>http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=377160&count=3&maxlength=300&format=json</em></a>
+      </div>
+      
+      <p>Now, if you click on that link, you will see a bunch of data that probably means nothing to you right now. We will get to what all that means in the next section, but for now, let's break down this request.</p>
+      
+      <table>
+          <tr>
+              <td>http://api.steampowered.com/</td>
+              <td>This is the base url that all of our API calls will contain no matter what. This is where our request is being sent.</td>
+          </tr>
+          <tr>
+              <td>ISteamNews/</td>
+              <td>This portion is the "interface name" of our request. The interface contains methods which we also need to include next. The complete list of interfaces (and methods) can be found in the official documentation <a href="https://developer.valvesoftware.com/wiki/Steam_Web_API">here</a>.</td>
+          </tr>
+          <tr>
+              <td>GetNewsForApp/</td>
+              <td>This is the "method name" which describes what this request is ultimately doing. We can see that this method will help us get recent news articles for a particular game.</td>
+          </tr>
+          <tr>
+              <td>v0002/</td>
+              <td>This is the version attribute. You must reference the official documentation to include the correct version in your request.</td>
+          </tr>
+          <tr>
+              <td>?appid=377160</td>
+              <td>The appid here refers to the ID of the game that we want to get news for. For our example, the game that has id 377160 is Fallout 4 (great game btw). You can search for your favorite game's id <a href="https://steamdb.info/search/">here</a>.</td>
+          </tr>
+          <tr>
+              <td>count=3</td>
+              <td>Count here refers to the number of news articles that we want returned.</td>
+          </tr>
+          <tr>
+              <td>maxlength=300</td>
+              <td>Maxlength is the maximum length of each news entry that we want returned. In this case it is 300 characters.</td>
+          </tr>
+          <tr>
+              <td>format=json</td>
+              <td>Format is the output format that we want our results to be in. By default, if you do not specify this value, results will be returned in JSON format (more on this <a href="">later)</a>.</td>
+          </tr>
+      </table>
+      
+      <p>As you can see, once we break everything down,  putting together an API request isn't so bad after all. Now that we've analyzed a request that doeen's require a key, let's look at one that DOES require that API key that we signed up for. Consider the request below:</p>
+      
+      <div class="well">
+          <a href=" http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=[PLACE KEY HERE]&steamids=76561197960435530"> http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=[PLACE KEY HERE]&steamids=76561197960435530</a>
+      </div>
+      
+      <p>Now if you click on the above link without replacing the [PLACE KEY HERE] with your API key, then you will receive an error telling you that access was denied. This is because we are trying to access somewhat sensitive/private information. Can you figure out what we are trying to access here from what you know about interface and method names? Let's analyze some of the newer parts of this request.</p>
+      
+      <table>
+          <tr>
+              <td>?key=</td>
+              <td>In all calls where our API key is required, this piece of the request address will need to be filled in with our steam API key.</td>
+          </tr>
+          <tr>
+              <td>steamids=</td>
+              <td>In this particular request, steamids refers to the ID of the user that we wish to get a summary of.</td>
+          </tr>
+      </table>
+      
+      <h1>Now what?</h1>
+      <p>Well, now that we understand the basic structure of a request using our API, how do we do something useful with it? So far, we have only been using our requests in the address bar of our browser. When we do this, the data we want is just output as one big jumble on the screen. So how can we begin to incorporate these API calls into some sort of useful application to get our player summary and game news data? That's where Javascript comes in.</p>
+   
+      <a href="getting-started.html" type="button" class="btn btn-success">Previous</a> 
+      <a href="http-requests.html" type="button" class="btn btn-success">Continue</a>
+      
+  </div>
+</div>
+</div>
+    
+<div id="footer">
+    <div class="container">
+        <p>&copy; Nick DeJarnette 2016</p>
+    </div>
+</div>
+   
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Steam API Tutorial</title>
+    
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css" type="text/css"> 
+    <script src="maps.js"></script>
+    
+</head>
+<body>
+  <!--default navigation bar-->
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Steam API Guide</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          Quick Links <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="api-rundown.html">What is an API</a></li>
+            <li><a href="getting-started.html">Getting Started with Steam</a></li>
+            <li><a href="api-calls.html">Making API calls</a></li>
+            <li><a href="http-requests.html">HTTP Requests</a></li>
+            <li><a href="json-data.html">Understanding response data</a></li>
+            <li><a href="accessing-data.html">Using API response data</a></li>
+          </ul>
+        </li>
+      </ul> 
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+   
+<div class="jumbotron">
+ <div class="container">
+    <h1>Access JSON data</h1>
+    <p>Now we want to access and display our data</p>  
+ </div> 
+</div>
+ 
+<div class="container-fluid">
+<div style="text-align: center" class="row">
+  <div class="col-md-6 col-md-offset-3">
+      <h1>Access and display JSON data</h1>
+      <p>We can now see the data that our request returned from the previous lesson. I will display it again below as a reference.</p>
+      
+      <img src="images/jsonData.jpg" alt="">
+      
+      <p>Let's get access to some of this data now. If you remember from our http request, we had a section of code that looked like this:</p>
+      
+      <img src="images/snippet.jpg" alt="">
+      
+      <p>The variable <span>response</span> is what holds our entire JSON response data, so to access anything inside of that object, we would need to start our access statement with that response variable. From here on out, I am assuming that you are familiar with how to access object elements and array elements in javascript. If not then <a href="http://www.w3schools.com/js/js_objects.asp">here is a quick refresher.</a></p>
+      
+      <p>Look at our JSON data above again. The data we want to access is an object with key: value pairs, which is inside of an array <span>players</span>, an array that is inside of an object <span>response.</span> So, if we wanted to get our players' <span>realname</span> value, our access statement would look something like this: <code>response.response.players[0].realname</code>. Not as complicated as you may have thought huh? Can you write a statement to access our player <span>avatarmedium</span> and <span>profileurl</span>?</p>
+      
+      <h1>Display our data</h1>
+      
+      <p>Now that we can access our data, we want to be able to display it. This is as simple as accessing our DOM and appending our data to an element. First, we can declare a simple paragraph in our html file as such: <code>p id="name"</code></p>
+      
+      <p>Then, in our javascript, we want to access this DOM element after our response variable has been assigned our JSON response data. The line of code that will let us append our player name to our paragraph would look like this: <code>document.getElementById("name").textContent = "Player Name: " + response.response.players[0].realname</code>.
+      We are accessing our paragraph with the id of "name" and setting the text inside of that content to our players' name. The resulting page will look like this: </p>
+      
+      <img src="images/display.jpg" alt="">
+      
+      <p>Try to access the players' profile url and display it a document. You can use a tool like <a href="https://jsfiddle.net/">JSFiddle</a> to practice what you have learned up to this point.</p>
+      
+      <div class="alert alert-warning">
+          <span>NOTE! </span>If you use JSFiddle to practice http requests with your key, you will more than likely need to change the base request url from <code>http://api.steampowered.com/</code> to <code>https://api.steampowered.com/</code> if you are using google chrome.
+      </div>
+      
+      <h1>Congratulations!</h1>
+      
+      <p>You now have all the tools you need to get started building useful applications using the Steam API. Remember to consult the <a href="https://developer.valvesoftware.com/wiki/Steam_Web_API">Steam API official documentation</a> for any other api requests you wish to fiddle with. Happy coding!</p>
+      
+      <a href="json-data.html" type="button" class="btn btn-success">Previous</a> 
+      
+  </div>
+</div>
+    </div>
+    
+<div id="footer">
+    <div class="container">
+        <p>&copy; Nick DeJarnette 2016</p>
+    </div>
+</div>
+   
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    
+</body>
+</html>
